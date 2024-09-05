@@ -818,6 +818,7 @@ GEM
     simplecov-html (0.12.3)
     simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
+    spring (4.2.1)
     stackprof (0.2.26)
     stoplight (4.1.0)
       redlock (~> 1.0)
@@ -1043,6 +1044,7 @@ DEPENDENCIES
   simple_form (~> 5.2)
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
+  spring
   stackprof
   stoplight (~> 4.1)
   strong_migrations

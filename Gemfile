@@ -208,6 +208,8 @@ group :development, :test do
   gem 'stackprof', require: false
   gem 'test-prof'
 
+  gem 'spring'
+
   # RSpec runner for rails
   gem 'rspec-rails', '~> 7.0'
 end
