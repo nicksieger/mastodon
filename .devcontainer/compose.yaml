@@ -20,6 +20,10 @@ services:
       ES_HOST: es
       ES_PORT: '9200'
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+      WEB_DOMAIN: ${WEB_DOMAIN-localhost:3000}
+      ALTERNATE_DOMAINS: ${ALTERNATE_DOMAINS-}
+      STREAMING_API_BASE_URL: ${STREAMING_API_BASE_URL-}
+      LOCAL_HTTPS: ${LOCAL_HTTPS-}
     command: spring server
     ports:
       - '3000:3000'
