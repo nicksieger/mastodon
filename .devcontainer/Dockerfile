@@ -20,3 +20,8 @@ COPY .devcontainer/welcome-message.txt /usr/local/etc/vscode-dev-containers/firs
 COPY Gemfile .
 COPY Gemfile.lock .
 RUN bundle
+
+RUN corepack enable
+
+# Turn on REMOTE_DEV flag
+ENV REMOTE_DEV=1
