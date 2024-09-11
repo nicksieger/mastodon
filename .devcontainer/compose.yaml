@@ -1,11 +1,14 @@
 services:
-  app:
+  app: &app
     working_dir: /workspaces/mastodon/
+    image: mastodon-dev
+    pull_policy: build
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspaces/mastodon:cached
+      - spring:/var/run/spring
     environment:
       RAILS_ENV: development
       NODE_ENV: development
@@ -24,6 +27,8 @@ services:
       ALTERNATE_DOMAINS: ${ALTERNATE_DOMAINS-}
       STREAMING_API_BASE_URL: ${STREAMING_API_BASE_URL-}
       LOCAL_HTTPS: ${LOCAL_HTTPS-}
+      SPRING_TMP_PATH: /var/run/spring
+      SPRING_SOCKET: /var/run/spring/mastodon-dev.sock
     command: spring server
     ports:
       - '3000:3000'
@@ -32,6 +37,25 @@ services:
     networks:
       - external_network
       - internal_network
+
+  setup:
+    <<: *app
+    command: bin/setup
+    ports: []
+    network_mode: service:app
+    networks: []
+    depends_on:
+      - app
+
+  dev:
+    <<: *app
+    command: bin/dev
+    ports: []
+    network_mode: service:app
+    networks: []
+    depends_on:
+      setup:
+        condition: service_completed_successfully
 
   db:
     image: postgres:14-alpine
@@ -85,6 +109,7 @@ volumes:
   redis-data:
   es-data:
   lt-data:
+  spring:
 
 networks:
   external_network:
