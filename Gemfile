@@ -209,6 +209,8 @@ group :development, :test do
   gem 'test-prof'
 
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-rubocop'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 7.0'
